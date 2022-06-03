@@ -44,6 +44,33 @@ class Ship {
     }
     return [rowCoord, colCoord];
   }
+
+  foresight(rowCoord, colCoord) {
+    let row = rowCoord;
+    let col = colCoord;
+    if (this.orientation) {
+      if (col > 10 - this.size) {
+        col = 10 - this.size;
+      }
+      const shipPotentialPosition = [];
+      for (let i = 0; i < this.size; i += 1) {
+        shipPotentialPosition.push([row, col + i]);
+      }
+      return shipPotentialPosition;
+    }
+
+    if (!this.orientation) {
+      if (row > 10 - this.size) {
+        row = 10 - this.size;
+      }
+      const shipPotentialPosition = [];
+      for (let i = 0; i < this.size; i += 1) {
+        shipPotentialPosition.push([row + i, col]);
+      }
+      return shipPotentialPosition;
+    }
+    return [rowCoord, colCoord];
+  }
 }
 
 export default Ship;

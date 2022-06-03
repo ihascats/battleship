@@ -1,5 +1,4 @@
-import Map from './map.generate';
-import Ship from './ship.generate';
+import Ship from '../ship.constructor';
 
 test('Move ship to position row = 2, column = 3', () => {
   const carrier = new Ship(5, 0);
@@ -20,6 +19,16 @@ test('Move ship to position row = 9, column = 0', () => {
     [9, 2],
     [9, 3],
     [9, 4],
+  ]);
+});
+
+test("Move ship to position row = 9, column = 0, ship's length is < than 5", () => {
+  const carrier = new Ship(4, 0);
+  expect(carrier.move(9, 0)).toStrictEqual([
+    [9, 0],
+    [9, 1],
+    [9, 2],
+    [9, 3],
   ]);
 });
 
@@ -124,6 +133,24 @@ describe("Ship's can change orientation after moving position", () => {
       [5, 7],
       [5, 8],
       [5, 9],
+    ]);
+  });
+});
+
+describe('Check that the foresight is correct', () => {
+  const carrier = new Ship(3, 0);
+  test('Foresight returns potential position that matches vertical [0, 0]', () => {
+    expect(carrier.foresight(4, 2)).toStrictEqual([
+      [4, 2],
+      [4, 3],
+      [4, 4],
+    ]);
+  });
+  test('Move matches foresight', () => {
+    expect(carrier.move(4, 2)).toStrictEqual([
+      [4, 2],
+      [4, 3],
+      [4, 4],
     ]);
   });
 });
