@@ -154,3 +154,17 @@ describe('Check that the foresight is correct', () => {
     ]);
   });
 });
+
+describe('Foresight shows potential positions without changing the position of the ship', () => {
+  const carrier = new Ship(3, 0);
+  test('Foresight returns coordinates', () => {
+    expect(carrier.foresight(4, 2)).toStrictEqual([
+      [4, 2],
+      [4, 3],
+      [4, 4],
+    ]);
+  });
+  test('Coordinates remain unchanged after foresight', () => {
+    expect(carrier.gridPositions).toStrictEqual([]);
+  });
+});

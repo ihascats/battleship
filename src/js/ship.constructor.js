@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 class Ship {
   constructor(size, id) {
     this.size = size;
@@ -42,7 +43,6 @@ class Ship {
       this.originPosition = [row, col];
       return shipPositions;
     }
-    return [rowCoord, colCoord];
   }
 
   foresight(rowCoord, colCoord) {
@@ -69,7 +69,6 @@ class Ship {
       }
       return shipPotentialPosition;
     }
-    return [rowCoord, colCoord];
   }
 }
 
