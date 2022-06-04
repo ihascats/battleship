@@ -25,7 +25,8 @@ class Map {
   }
 
   positionShip(ship, coordinates) {
-    const layoutWithoutSelectedShip = this.layout.map(
+    const mapLayoutCopy = JSON.parse(JSON.stringify(this.layout));
+    const layoutWithoutSelectedShip = mapLayoutCopy.map(
       (secondArray) =>
         // eslint-disable-next-line implicit-arrow-linebreak
         secondArray.map((item) => {
@@ -61,6 +62,7 @@ class Map {
       }
     });
     if (!canPlaceShip) return;
+
     this.layout = [...layoutWithoutSelectedShip];
     ship.move(coordinates[0], coordinates[1]);
 

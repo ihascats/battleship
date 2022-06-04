@@ -276,6 +276,38 @@ describe('Moving a ship after it was placed does not cause duplication', () => {
       [null, null, null, null, null, null, null, null, null, null],
     ]);
   });
+  describe('Add a second ship and move it around', () => {
+    test('Place a ship at 8, 1', () => {
+      map.positionShip(map.ships[1], [8, 1]);
+      expect(map.layout).toStrictEqual([
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, [0], [0], [0], [0], [0], [0], [0], null],
+        [null, null, [0], 0, 0, 0, 0, 0, [0], null],
+        [[1], [1], [0, 1], [0, 1], [0, 1], [0, 1], [0], [0], [0], null],
+        [[1], 1, 1, 1, 1, [1], null, null, null, null],
+        [[1], [1], [1], [1], [1], [1], null, null, null, null],
+      ]);
+    });
+    test('Attempt to move the ship to 7, 1', () => {
+      map.positionShip(map.ships[1], [7, 1]);
+      expect(map.layout).toStrictEqual([
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, [0], [0], [0], [0], [0], [0], [0], null],
+        [null, null, [0], 0, 0, 0, 0, 0, [0], null],
+        [[1], [1], [0, 1], [0, 1], [0, 1], [0, 1], [0], [0], [0], null],
+        [[1], 1, 1, 1, 1, [1], null, null, null, null],
+        [[1], [1], [1], [1], [1], [1], null, null, null, null],
+      ]);
+    });
+  });
 });
 
 test('Cloning a map layout', () => {
