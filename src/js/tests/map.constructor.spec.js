@@ -30,10 +30,11 @@ test('Map contains 5 ships', () => {
   ]);
 });
 
-test('Add a ship to the map layout', () => {
+test('Add a ship to the corner of the map layout', () => {
   const map = new Map();
   expect(map.positionShip(map.ships[0], [0, 0])).toStrictEqual([
-    [0, 0, 0, 0, 0, null, null, null, null, null],
+    [0, 0, 0, 0, 0, [0], null, null, null, null],
+    [[0], [0], [0], [0], [0], [0], null, null, null, null],
     [null, null, null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null, null, null],
@@ -42,6 +43,60 @@ test('Add a ship to the map layout', () => {
     [null, null, null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null, null, null],
+  ]);
+});
+
+describe('Add a vertically oriented ship to the corner of the map layout', () => {
+  const map = new Map();
+
+  test('Rotate the ship', () => {
+    map.ships[0].changeOrientation();
+    expect(map.ships[0].orientation).toBeFalsy();
+  });
+  test('Add a ship to the map layout', () => {
+    expect(map.positionShip(map.ships[0], [0, 0])).toStrictEqual([
+      [0, [0], null, null, null, null, null, null, null, null],
+      [0, [0], null, null, null, null, null, null, null, null],
+      [0, [0], null, null, null, null, null, null, null, null],
+      [0, [0], null, null, null, null, null, null, null, null],
+      [0, [0], null, null, null, null, null, null, null, null],
+      [[0], [0], null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ]);
+  });
+});
+
+test('Add a ship to the middle of the map layout', () => {
+  const map = new Map();
+  expect(map.positionShip(map.ships[0], [5, 2])).toStrictEqual([
     [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, [0], [0], [0], [0], [0], [0], [0], null, null],
+    [null, [0], 0, 0, 0, 0, 0, [0], null, null],
+    [null, [0], [0], [0], [0], [0], [0], [0], null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+  ]);
+});
+
+test('Add a ship to the opposite corner of the map layout', () => {
+  const map = new Map();
+  expect(map.positionShip(map.ships[0], [9, 9])).toStrictEqual([
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, [0], [0], [0], [0], [0], [0]],
+    [null, null, null, null, [0], 0, 0, 0, 0, 0],
   ]);
 });

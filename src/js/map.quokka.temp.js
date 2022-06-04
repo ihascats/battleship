@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 const map = [];
 
 for (let i = 0; i < 10; i += 1) {
@@ -9,5 +10,4 @@ for (let i = 0; i < 10; i += 1) {
   map.push(row);
 }
 
-// eslint-disable-next-line no-unused-expressions
 map;
