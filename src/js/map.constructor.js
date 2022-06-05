@@ -119,6 +119,20 @@ class Map {
     }
     this.positionShip(ship, ship.originPosition);
   }
+
+  attack(coordinates) {
+    if (
+      // eslint-disable-next-line operator-linebreak
+      this.layout[coordinates[0]][coordinates[1]] === null ||
+      Array.isArray(this.layout[coordinates[0]][coordinates[1]])
+    ) {
+      this.layout[coordinates[0]][coordinates[1]] = false;
+      return;
+    }
+    if (!Number.isNaN(this.layout[coordinates[0]][coordinates[1]])) {
+      this.layout[coordinates[0]][coordinates[1]] = true;
+    }
+  }
 }
 
 export default Map;
