@@ -24,7 +24,7 @@ class Map {
     this.ships = [carrier, battleship, cruiser, submarine, destroyer];
   }
 
-  positionShip(ship, coordinates) {
+  cloneMap(ship) {
     const mapLayoutCopy = JSON.parse(JSON.stringify(this.layout));
     const layoutWithoutSelectedShip = mapLayoutCopy.map(
       (secondArray) =>
@@ -51,19 +51,34 @@ class Map {
         }),
       // eslint-disable-next-line function-paren-newline
     );
+    return layoutWithoutSelectedShip;
+  }
 
-    let canPlaceShip = true;
+  // eslint-disable-next-line class-methods-use-this
+  verifyPlacement(ship, coordinates, verificationLayout) {
+    let verification = true;
     ship.foresight(coordinates[0], coordinates[1]).forEach((item) => {
       const row = item[0];
       const col = item[1];
-      if (layoutWithoutSelectedShip[row][col] !== null) {
+      if (verificationLayout[row][col] !== null) {
         // eslint-disable-next-line no-useless-return
-        canPlaceShip = false;
+        verification = false;
       }
     });
+    return verification;
+  }
+
+  positionShip(ship, coordinates) {
+    const layoutWithoutSelectedShip = this.cloneMap(ship);
+
+    const canPlaceShip = this.verifyPlacement(
+      ship,
+      coordinates,
+      layoutWithoutSelectedShip,
+    );
     if (!canPlaceShip) return;
 
-    this.layout = [...layoutWithoutSelectedShip];
+    this.layout = JSON.parse(JSON.stringify(layoutWithoutSelectedShip));
     ship.move(coordinates[0], coordinates[1]);
 
     ship.gridPositions.forEach((item) => {
@@ -88,6 +103,21 @@ class Map {
         }
       }
     }
+  }
+
+  rotateShip(ship) {
+    const verificationLayout = this.cloneMap(ship);
+    ship.changeOrientation();
+    const canPlaceShip = this.verifyPlacement(
+      ship,
+      ship.originPosition,
+      verificationLayout,
+    );
+    if (!canPlaceShip) {
+      ship.changeOrientation();
+      return;
+    }
+    this.positionShip(ship, ship.originPosition);
   }
 }
 

@@ -315,3 +315,117 @@ test('Cloning a map layout', () => {
   const mapCopy = [...map.layout];
   expect(mapCopy).toStrictEqual(map.layout);
 });
+
+describe('Rotate the ship without moving it', () => {
+  const map = new Map();
+  test('Place a ship at 0, 0', () => {
+    map.positionShip(map.ships[0], [0, 0]);
+    expect(map.layout).toStrictEqual([
+      [0, 0, 0, 0, 0, [0], null, null, null, null],
+      [[0], [0], [0], [0], [0], [0], null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ]);
+  });
+  test('Rotate the ship', () => {
+    map.rotateShip(map.ships[0]);
+    expect(map.layout).toStrictEqual([
+      [0, [0], null, null, null, null, null, null, null, null],
+      [0, [0], null, null, null, null, null, null, null, null],
+      [0, [0], null, null, null, null, null, null, null, null],
+      [0, [0], null, null, null, null, null, null, null, null],
+      [0, [0], null, null, null, null, null, null, null, null],
+      [[0], [0], null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ]);
+  });
+
+  test('Move ship to 9, 9', () => {
+    map.positionShip(map.ships[0], [9, 9]);
+    expect(map.layout).toStrictEqual([
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, [0], [0]],
+      [null, null, null, null, null, null, null, null, [0], 0],
+      [null, null, null, null, null, null, null, null, [0], 0],
+      [null, null, null, null, null, null, null, null, [0], 0],
+      [null, null, null, null, null, null, null, null, [0], 0],
+      [null, null, null, null, null, null, null, null, [0], 0],
+    ]);
+  });
+
+  test('Rotate the ship at the new coordinates', () => {
+    map.rotateShip(map.ships[0]);
+    expect(map.layout).toStrictEqual([
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, [0], [0], [0], [0], [0], [0]],
+      [null, null, null, null, [0], 0, 0, 0, 0, 0],
+      [null, null, null, null, [0], [0], [0], [0], [0], [0]],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ]);
+  });
+
+  test('Add a second ship', () => {
+    map.positionShip(map.ships[1], [9, 3]);
+    expect(map.layout).toStrictEqual([
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, [0], [0], [0], [0], [0], [0]],
+      [null, null, null, null, [0], 0, 0, 0, 0, 0],
+      [null, null, null, null, [0], [0], [0], [0], [0], [0]],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, [1], [1], [1], [1], [1], [1], null, null],
+      [null, null, [1], 1, 1, 1, 1, [1], null, null],
+    ]);
+  });
+
+  test('Attempt to rotate the first ship where it would overlap the second ship', () => {
+    map.rotateShip(map.ships[0]);
+    expect(map.layout).toStrictEqual([
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, [0], [0], [0], [0], [0], [0]],
+      [null, null, null, null, [0], 0, 0, 0, 0, 0],
+      [null, null, null, null, [0], [0], [0], [0], [0], [0]],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, [1], [1], [1], [1], [1], [1], null, null],
+      [null, null, [1], 1, 1, 1, 1, [1], null, null],
+    ]);
+  });
+
+  test('Attempt to rotate the second ship so that their outlines would overlap', () => {
+    map.rotateShip(map.ships[1]);
+    expect(map.layout).toStrictEqual([
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, [0], [0], [0], [0], [0], [0]],
+      [null, null, [1], [1], [0, 1], 0, 0, 0, 0, 0],
+      [null, null, [1], 1, [0, 1], [0], [0], [0], [0], [0]],
+      [null, null, [1], 1, [1], null, null, null, null, null],
+      [null, null, [1], 1, [1], null, null, null, null, null],
+      [null, null, [1], 1, [1], null, null, null, null, null],
+    ]);
+  });
+});
