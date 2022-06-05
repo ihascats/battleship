@@ -655,4 +655,66 @@ describe('Attacking will display wether its a hit or miss', () => {
       [null, null, null, null, null, null, null, null, null, null],
     ]);
   });
+  describe('Destroying a ship should mark adjacent positions as well', () => {
+    test('Attack coordinates row = 0, column = 1', () => {
+      map.attack([0, 1]);
+      expect(map.layout).toStrictEqual([
+        [true, true, 0, 0, 0, [0], null, null, null, null],
+        [false, [0], [0], [0], [0], [0], null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, false, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ]);
+    });
+    test('Attack coordinates row = 0, column = 2', () => {
+      map.attack([0, 2]);
+      expect(map.layout).toStrictEqual([
+        [true, true, true, 0, 0, [0], null, null, null, null],
+        [false, [0], [0], [0], [0], [0], null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, false, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ]);
+    });
+    test('Attack coordinates row = 0, column = 3', () => {
+      map.attack([0, 3]);
+      expect(map.layout).toStrictEqual([
+        [true, true, true, true, 0, [0], null, null, null, null],
+        [false, [0], [0], [0], [0], [0], null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, false, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ]);
+    });
+    test('Attack coordinates row = 0, column = 4, destroying the ship', () => {
+      map.attack([0, 4]);
+      expect(map.layout).toStrictEqual([
+        [true, true, true, true, true, false, null, null, null, null],
+        [false, false, false, false, false, false, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, false, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ]);
+    });
+  });
 });

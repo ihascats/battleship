@@ -129,9 +129,32 @@ class Map {
       this.layout[coordinates[0]][coordinates[1]] = false;
       return;
     }
+    let hitShipId;
     if (!Number.isNaN(this.layout[coordinates[0]][coordinates[1]])) {
+      hitShipId = this.layout[coordinates[0]][coordinates[1]];
       this.layout[coordinates[0]][coordinates[1]] = true;
     }
+    let isHitShipDestroyed = true;
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        if (this.layout[i][j] === hitShipId) {
+          isHitShipDestroyed = false;
+        }
+      }
+    }
+    if (isHitShipDestroyed) {
+      for (let i = 0; i < 10; i += 1) {
+        for (let j = 0; j < 10; j += 1) {
+          if (Array.isArray(this.layout[i][j])) {
+            if (this.layout[i][j].includes(hitShipId)) {
+              this.layout[i][j] = false;
+            }
+          }
+        }
+      }
+    }
+    //
+    //
   }
 }
 
