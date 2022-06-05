@@ -429,3 +429,165 @@ describe('Rotate the ship without moving it', () => {
     ]);
   });
 });
+
+describe('Place all the ships on the playing map', () => {
+  const map = new Map();
+  describe('Place the Carrier at coordinates row = 0, column = 2, then rotate it', () => {
+    test('Place the Carrier at row = 0, column = 2', () => {
+      map.positionShip(map.ships[0], [0, 2]);
+
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, 0, 0, 0, 0, [0], null, null],
+        [null, [0], [0], [0], [0], [0], [0], [0], null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ]);
+    });
+    test('Rotate the carrier', () => {
+      map.rotateShip(map.ships[0]);
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], [0], [0], null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ]);
+    });
+  });
+
+  describe('Place the Battleship at coordinates row = 6, column = 0', () => {
+    test('Place the Battleship at row = 6, column = 0', () => {
+      map.positionShip(map.ships[1], [6, 0]);
+
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [[1], [0, 1], [0, 1], [0, 1], [1], null, null, null, null, null],
+        [1, 1, 1, 1, [1], null, null, null, null, null],
+        [[1], [1], [1], [1], [1], null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ]);
+    });
+  });
+
+  describe('Place the Cruiser at coordinates row = 9, column = 0, then attempt to rotate it', () => {
+    test('Place the Cruiser at row = 9, column = 0', () => {
+      map.positionShip(map.ships[2], [9, 0]);
+
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [[1], [0, 1], [0, 1], [0, 1], [1], null, null, null, null, null],
+        [1, 1, 1, 1, [1], null, null, null, null, null],
+        [[1], [1], [1], [1], [1], null, null, null, null, null],
+        [[2], [2], [2], [2], null, null, null, null, null, null],
+        [2, 2, 2, [2], null, null, null, null, null, null],
+      ]);
+    });
+    test('Attempt to rotate the cruiser', () => {
+      map.rotateShip(map.ships[2]);
+
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [[1], [0, 1], [0, 1], [0, 1], [1], null, null, null, null, null],
+        [1, 1, 1, 1, [1], null, null, null, null, null],
+        [[1], [1], [1], [1], [1], null, null, null, null, null],
+        [[2], [2], [2], [2], null, null, null, null, null, null],
+        [2, 2, 2, [2], null, null, null, null, null, null],
+      ]);
+    });
+  });
+
+  describe('Place the Submarine at coordinates row = 0, column = 7, then rotate it', () => {
+    test('Place the Submarine at row = 0, column = 7', () => {
+      map.positionShip(map.ships[3], [0, 7]);
+
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, [0], null, null, [3], 3, 3, 3],
+        [null, [0], 0, [0], null, null, [3], [3], [3], [3]],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [[1], [0, 1], [0, 1], [0, 1], [1], null, null, null, null, null],
+        [1, 1, 1, 1, [1], null, null, null, null, null],
+        [[1], [1], [1], [1], [1], null, null, null, null, null],
+        [[2], [2], [2], [2], null, null, null, null, null, null],
+        [2, 2, 2, [2], null, null, null, null, null, null],
+      ]);
+    });
+    test('Rotate the Submarine', () => {
+      map.rotateShip(map.ships[3]);
+
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, [0], null, null, [3], 3, [3], null],
+        [null, [0], 0, [0], null, null, [3], 3, [3], null],
+        [null, [0], 0, [0], null, null, [3], 3, [3], null],
+        [null, [0], 0, [0], null, null, [3], [3], [3], null],
+        [null, [0], 0, [0], null, null, null, null, null, null],
+        [[1], [0, 1], [0, 1], [0, 1], [1], null, null, null, null, null],
+        [1, 1, 1, 1, [1], null, null, null, null, null],
+        [[1], [1], [1], [1], [1], null, null, null, null, null],
+        [[2], [2], [2], [2], null, null, null, null, null, null],
+        [2, 2, 2, [2], null, null, null, null, null, null],
+      ]);
+    });
+  });
+
+  describe('Place the Destroyer at coordinates row = 3, column = 4, then rotate it', () => {
+    test('Place the Destroyer at row = 3, column = 4', () => {
+      map.positionShip(map.ships[4], [3, 4]);
+
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, [0], null, null, [3], 3, [3], null],
+        [null, [0], 0, [0], null, null, [3], 3, [3], null],
+        [null, [0], 0, [0, 4], [4], [4], [3, 4], 3, [3], null],
+        [null, [0], 0, [0, 4], 4, 4, [3, 4], [3], [3], null],
+        [null, [0], 0, [0, 4], [4], [4], [4], null, null, null],
+        [[1], [0, 1], [0, 1], [0, 1], [1], null, null, null, null, null],
+        [1, 1, 1, 1, [1], null, null, null, null, null],
+        [[1], [1], [1], [1], [1], null, null, null, null, null],
+        [[2], [2], [2], [2], null, null, null, null, null, null],
+        [2, 2, 2, [2], null, null, null, null, null, null],
+      ]);
+    });
+
+    test('Rotate the Destroyer', () => {
+      map.rotateShip(map.ships[4]);
+
+      expect(map.layout).toStrictEqual([
+        [null, [0], 0, [0], null, null, [3], 3, [3], null],
+        [null, [0], 0, [0], null, null, [3], 3, [3], null],
+        [null, [0], 0, [0, 4], [4], [4], [3], 3, [3], null],
+        [null, [0], 0, [0, 4], 4, [4], [3], [3], [3], null],
+        [null, [0], 0, [0, 4], 4, [4], null, null, null, null],
+        [[1], [0, 1], [0, 1], [0, 1, 4], [1, 4], [4], null, null, null, null],
+        [1, 1, 1, 1, [1], null, null, null, null, null],
+        [[1], [1], [1], [1], [1], null, null, null, null, null],
+        [[2], [2], [2], [2], null, null, null, null, null, null],
+        [2, 2, 2, [2], null, null, null, null, null, null],
+      ]);
+    });
+  });
+});
