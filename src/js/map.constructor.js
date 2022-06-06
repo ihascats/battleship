@@ -156,6 +156,22 @@ class Map {
     //
     //
   }
+
+  allShipsDestroyed() {
+    let numberOfTrueStatements = 0;
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        if (this.layout[i][j] === true) {
+          numberOfTrueStatements += 1;
+        }
+      }
+    }
+    if (numberOfTrueStatements === 17) {
+      return true;
+    }
+    return false;
+    //
+  }
 }
 
 export default Map;

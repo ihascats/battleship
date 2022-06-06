@@ -718,3 +718,68 @@ describe('Attacking will display wether its a hit or miss', () => {
     });
   });
 });
+
+describe('Return true if all ships on the map have been destroyed', () => {
+  //
+  const map = new Map();
+  test('Set up the map short of the winning condition', () => {
+    map.layout = [
+      [true, null, true, null, true, null, true, null, null, null],
+      [true, null, true, null, true, null, true, null, null, null],
+      [true, null, true, null, true, null, true, null, null, null],
+      [true, null, true, null, null, null, null, null, null, null],
+      [true, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ];
+    expect(map.layout).toStrictEqual([
+      [true, null, true, null, true, null, true, null, null, null],
+      [true, null, true, null, true, null, true, null, null, null],
+      [true, null, true, null, true, null, true, null, null, null],
+      [true, null, true, null, null, null, null, null, null, null],
+      [true, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ]);
+  });
+  describe('If map contains 17 true statements then return true else false', () => {
+    test('Check if all the ships on the map have been destroyed, by meeting the criteria of 17 true statements (15/17)', () => {
+      expect(map.allShipsDestroyed()).toBeFalsy();
+    });
+    test('Set up the map so it meets the winning condition', () => {
+      map.layout = [
+        [true, null, true, null, true, null, true, null, true, null],
+        [true, null, true, null, true, null, true, null, true, null],
+        [true, null, true, null, true, null, true, null, null, null],
+        [true, null, true, null, null, null, null, null, null, null],
+        [true, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ];
+      expect(map.layout).toStrictEqual([
+        [true, null, true, null, true, null, true, null, true, null],
+        [true, null, true, null, true, null, true, null, true, null],
+        [true, null, true, null, true, null, true, null, null, null],
+        [true, null, true, null, null, null, null, null, null, null],
+        [true, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ]);
+    });
+    test('Check if all the ships on the map have been destroyed, by meeting the criteria of 17 true statements (17/17)', () => {
+      expect(map.allShipsDestroyed()).toBeTruthy();
+    });
+  });
+});
