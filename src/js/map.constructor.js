@@ -120,7 +120,7 @@ class Map {
     this.positionShip(ship, ship.originPosition);
   }
 
-  attack(coordinates) {
+  receiveAttack(coordinates) {
     if (
       // eslint-disable-next-line operator-linebreak
       this.layout[coordinates[0]][coordinates[1]] === null ||
