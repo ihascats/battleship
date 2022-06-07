@@ -63,7 +63,8 @@ startButton.onclick = () => {
 resetButton.onclick = () => {
   resetButton.disabled = true;
   startButton.disabled = false;
-
+  cpuBoard.style.opacity = '100%';
+  playerBoard.style.opacity = '100%';
   cpuBoard.onclick = null;
   cpuBoard.style.opacity = '30%';
   player.map.resetMap();
