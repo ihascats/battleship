@@ -74,6 +74,13 @@ footer > h5 > a {
   background-position: center;
 }
 
+.half:first-child > .board > .hit {
+  background-color: #64112454 !important;
+  background-image: url(/src/img/target.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .miss {
   background-color: #0c202661;
 }
