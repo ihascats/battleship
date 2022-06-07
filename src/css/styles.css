@@ -97,10 +97,15 @@ footer > h5 > a {
 }
 
 .gameControls > button {
+  cursor: pointer;
   width: 96px;
   border: none;
   height: 32px;
   font-size: 13px;
+}
+
+.gameControls > button:disabled {
+  cursor: not-allowed;
 }
 
 .gameControls > button:hover {

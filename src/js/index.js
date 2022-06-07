@@ -21,9 +21,13 @@ player.designateOpponent(cpu);
 
 const startButton = document.querySelector('#start');
 const resetButton = document.querySelector('#reset');
+resetButton.disabled = true;
 const randomize = document.querySelector('.randomize');
 
+cpuBoard.style.opacity = '30%';
 startButton.onclick = () => {
+  resetButton.disabled = false;
+  cpuBoard.style.opacity = '100%';
   randomize.onclick = null;
   randomize.classList.add('disableRandomize');
   cpuBoard.onclick = (e) => {
@@ -34,8 +38,10 @@ startButton.onclick = () => {
 };
 
 resetButton.onclick = () => {
-  cpuBoard.onclick = null;
+  resetButton.disabled = true;
 
+  cpuBoard.onclick = null;
+  cpuBoard.style.opacity = '30%';
   player.map.resetMap();
   cpu.map.resetMap();
   resetBoards();
