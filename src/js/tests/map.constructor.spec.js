@@ -783,3 +783,37 @@ describe('Return true if all ships on the map have been destroyed', () => {
     });
   });
 });
+
+describe('Reset map sets all fields to null', () => {
+  const map = new Map();
+  test('Add a ship to the corner of the map layout', () => {
+    map.positionShip(map.ships[0], [0, 0]);
+    expect(map.layout).toStrictEqual([
+      [0, 0, 0, 0, 0, [0], null, null, null, null],
+      [[0], [0], [0], [0], [0], [0], null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ]);
+  });
+  test('Reset map', () => {
+    map.resetMap();
+    expect(map.layout).toStrictEqual([
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ]);
+  });
+});

@@ -46,16 +46,16 @@ footer > h5 > a {
 .board {
   display: grid;
   grid-template-columns: repeat(10, min-content);
-  border-top: 1px solid black;
-  border-left: 1px solid black;
+  border-top: 1px solid #0000005e;
+  border-left: 1px solid #0000005e;
   width: fit-content;
 }
 
 .square {
   height: 47px;
   width: 47px;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+  border-bottom: 1px solid #0000005e;
+  border-right: 1px solid #0000005e;
 }
 
 .controls {
@@ -65,4 +65,15 @@ footer > h5 > a {
 .randomize {
   cursor: pointer;
   color: #005eb1;
+}
+
+.hit {
+  background-color: #ff000061;
+  background-image: url(/src/img/target.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.miss {
+  background-color: #0c202661;
 }
