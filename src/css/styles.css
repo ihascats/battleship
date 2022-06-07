@@ -131,3 +131,13 @@ footer > h5 > a {
 .winner > h1 {
   font-size: 24px;
 }
+
+#opponent > .hit:hover {
+  background-color: #ff000061 !important;
+}
+#opponent > .miss:hover {
+  background-color: rgba(205, 92, 92, 0.5) !important;
+}
+#opponent > .square:hover {
+  background-color: rgba(144, 238, 144, 0.5);
+}
