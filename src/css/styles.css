@@ -34,3 +34,35 @@ header > h1 {
 footer > h5 > a {
   color: black;
 }
+
+.half {
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, min-content);
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  width: fit-content;
+}
+
+.square {
+  height: 47px;
+  width: 47px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.controls {
+  text-align: end;
+}
+
+.randomize {
+  cursor: pointer;
+  color: #005eb1;
+}
