@@ -23,9 +23,12 @@ const startButton = document.querySelector('#start');
 const resetButton = document.querySelector('#reset');
 resetButton.disabled = true;
 const randomize = document.querySelector('.randomize');
+const winner = document.querySelector('.winner');
 
 cpuBoard.style.opacity = '30%';
+
 startButton.onclick = () => {
+  startButton.disabled = true;
   resetButton.disabled = false;
   cpuBoard.style.opacity = '100%';
   randomize.onclick = null;
@@ -34,11 +37,32 @@ startButton.onclick = () => {
     const square = e.target.closest('.square');
     if (!square || square === null) return;
     combat(player, cpu, playerBoard, cpuBoard, square);
+    if (cpu.map.allShipsDestroyed()) {
+      //
+      cpuBoard.onclick = null;
+
+      cpuBoard.style.opacity = '30%';
+      playerBoard.style.opacity = '30%';
+      const won = document.createElement('h1');
+      won.textContent = 'Player1 won';
+      winner.appendChild(won);
+    }
+    if (player.map.allShipsDestroyed()) {
+      //
+      cpuBoard.onclick = null;
+
+      cpuBoard.style.opacity = '30%';
+      playerBoard.style.opacity = '30%';
+      const won = document.createElement('h1');
+      won.textContent = 'Albert won';
+      winner.appendChild(won);
+    }
   };
 };
 
 resetButton.onclick = () => {
   resetButton.disabled = true;
+  startButton.disabled = false;
 
   cpuBoard.onclick = null;
   cpuBoard.style.opacity = '30%';

@@ -71,7 +71,7 @@ footer > h5 > a {
 
 .disableRandomize {
   cursor: not-allowed;
-  color: #005eb179 !important;
+  color: rgb(0 94 177 / 30%) !important;
 }
 
 .hit {
@@ -126,4 +126,8 @@ footer > h5 > a {
 
 .ship {
   background-color: #507493;
+}
+
+.winner > h1 {
+  font-size: 24px;
 }
