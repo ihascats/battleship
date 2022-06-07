@@ -61,6 +61,9 @@ startButton.onclick = () => {
 };
 
 resetButton.onclick = () => {
+  if (winner.firstElementChild) {
+    winner.firstElementChild.remove();
+  }
   resetButton.disabled = true;
   startButton.disabled = false;
   playerBoard.style.opacity = '100%';

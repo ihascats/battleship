@@ -9,6 +9,9 @@ function randomizeButton(player) {
     for (let j = 0; j < 10; j += 1) {
       if (typeof player.map.layout[i][j] === 'number') {
         board.children.item(i * 10 + j).classList.add('ship');
+        board.children
+          .item(i * 10 + j)
+          .setAttribute('id', player.map.layout[i][j]);
       }
     }
   }
