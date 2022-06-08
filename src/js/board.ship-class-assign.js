@@ -29,6 +29,8 @@ function assignClass(shipIdNumber, player, playerBoard, row, column) {
         board.children.item(i * 10 + j),
         horizontal,
         vertical,
+        player,
+        shipId,
       );
       board.children.item(i * 10 + j).onclick = () => {
         //
