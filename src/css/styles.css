@@ -60,13 +60,17 @@ footer > h5 > a {
 }
 
 .controls {
-  text-align: end;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
 }
 
 .randomize {
   cursor: pointer;
   color: #005eb1;
   user-select: none;
+  text-align: end;
 }
 
 .disableRandomize {
@@ -86,6 +90,9 @@ footer > h5 > a {
   background-image: url(/src/img/target.png);
   background-repeat: no-repeat;
   background-position: center;
+}
+.half:last-child > .board {
+  cursor: crosshair;
 }
 
 .miss {
@@ -141,4 +148,8 @@ footer > h5 > a {
 }
 #opponent > .square:hover {
   background-color: rgba(144, 238, 144, 0.5);
+}
+
+h6 {
+  opacity: 60%;
 }
