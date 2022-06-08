@@ -1,8 +1,9 @@
+// eslint-disable-next-line import/no-cycle
 import assignClass from './board.ship-class-assign';
 
-function randomizeButton(player) {
+function updateUserBoard(player) {
+  //
   const board = document.querySelector('.board');
-  player.randomlyPlaceShips();
   board.childNodes.forEach((element) => {
     const square = element;
     while (square.classList.length > 1) {
@@ -10,7 +11,6 @@ function randomizeButton(player) {
     }
     square.draggable = false;
     square.ondragstart = null;
-    square.onclick = null;
   });
   for (let i = 0; i < 10; i += 1) {
     for (let j = 0; j < 10; j += 1) {
@@ -21,5 +21,4 @@ function randomizeButton(player) {
     }
   }
 }
-
-export default randomizeButton;
+export default updateUserBoard;

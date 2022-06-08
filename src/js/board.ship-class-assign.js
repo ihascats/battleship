@@ -1,4 +1,6 @@
 import dragOrientation from './board.drag-orientation';
+// eslint-disable-next-line import/no-cycle
+import updateUserBoard from './board.update-player-map';
 
 function assignClass(shipIdNumber, player, playerBoard, row, column) {
   const i = row;
@@ -28,6 +30,11 @@ function assignClass(shipIdNumber, player, playerBoard, row, column) {
         horizontal,
         vertical,
       );
+      board.children.item(i * 10 + j).onclick = () => {
+        //
+        player.map.rotateShip(player.map.ships[shipId]);
+        updateUserBoard(player);
+      };
     }
   }
 }

@@ -1,12 +1,12 @@
 function dragOrientation(orientation, element, imgH, imgV) {
-  const square = element;
+  const shipSquare = element;
   if (orientation) {
-    square.ondragstart = (e) => {
+    shipSquare.ondragstart = (e) => {
       e.dataTransfer.setDragImage(imgH, 24, 24);
     };
   }
   if (!orientation) {
-    square.ondragstart = (e) => {
+    shipSquare.ondragstart = (e) => {
       e.dataTransfer.setDragImage(imgV, 24, 24);
     };
   }
