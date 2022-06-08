@@ -28,6 +28,18 @@ const winner = document.querySelector('.winner');
 cpuBoard.style.opacity = '30%';
 
 startButton.onclick = () => {
+  const allShipSquares = document.querySelectorAll('.ship');
+  allShipSquares.forEach((shipSquare) => {
+    const square = shipSquare;
+    square.ondragstart = null;
+    square.ondragend = null;
+    square.draggable = false;
+  });
+  const squares = document.querySelectorAll('.square');
+  squares.forEach((emptySquares) => {
+    const square = emptySquares;
+    square.ondragenter = null;
+  });
   startButton.disabled = true;
   resetButton.disabled = false;
   cpuBoard.style.opacity = '100%';
