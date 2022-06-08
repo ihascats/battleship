@@ -126,6 +126,7 @@ footer > h5 > a {
 
 .ship {
   background-color: #507493;
+  cursor: pointer;
 }
 
 .winner > h1 {
