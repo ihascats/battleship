@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import dragOrientation from './board.drag-orientation';
 // eslint-disable-next-line import/no-cycle
 import updateUserBoard from './board.update-player-map';
