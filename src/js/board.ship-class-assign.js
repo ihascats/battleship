@@ -3,7 +3,32 @@ import dragOrientation from './board.drag-orientation';
 // eslint-disable-next-line import/no-cycle
 import updateUserBoard from './board.update-player-map';
 
+import bsHorizontal from '../img/battleshipHorizontal.png';
+import bsVertical from '../img/battleshipVertical.png';
+import carHorizontal from '../img/carrierHorizontal.png';
+import carVertical from '../img/carrierVertical.png';
+import cruHorizontal from '../img/cruiserHorizontal.png';
+import cruVertical from '../img/cruiserVertical.png';
+import dstHorizontal from '../img/destroyerHorizontal.png';
+import dstVertical from '../img/destroyerVertical.png';
+import subHorizontal from '../img/submarineHorizontal.png';
+import subVertical from '../img/submarineVertical.png';
+
 function assignClass(shipIdNumber, player, playerBoard, row, column) {
+  const shipHorizontal = [
+    carHorizontal,
+    bsHorizontal,
+    cruHorizontal,
+    subHorizontal,
+    dstHorizontal,
+  ];
+  const shipVeritacal = [
+    carVertical,
+    bsVertical,
+    cruVertical,
+    subVertical,
+    dstVertical,
+  ];
   const i = row;
   const j = column;
   const board = playerBoard;
@@ -18,10 +43,9 @@ function assignClass(shipIdNumber, player, playerBoard, row, column) {
   for (let iteration = 0; iteration < 5; iteration += 1) {
     if (shipIdNumber === iteration) {
       const horizontal = document.createElement('img');
-      horizontal.src = `https://github.com/ihascats/battleship/blob/main/src/img/${shipType[iteration]}Horizontal.png`;
+      horizontal.src = shipHorizontal[iteration];
       const vertical = document.createElement('img');
-      vertical.src = `../src/img/${shipType[iteration]}Vertical.png`;
-      vertical.src = `https://github.com/ihascats/battleship/blob/main/src/img/${shipType[iteration]}Vertical.png`;
+      vertical.src = shipVeritacal[iteration];
       const shipId = shipIdNumber;
       const { orientation } = player.map.ships[shipId];
       board.children.item(i * 10 + j).classList.add(shipType[iteration]);
